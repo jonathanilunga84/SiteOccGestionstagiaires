@@ -1,0 +1,63 @@
+{% extends 'GestionStagiaires/base.html' %}
+
+{% block title %}
+    Accueil
+{% endblock %}
+
+{% block contenu %}
+    {% load static %}
+<div class="container">
+    <div class="row" id="img-index">
+        <div class="col-sm-12 col-md-12 col-lg-12" id="img-index1">
+            <img src="{% static 'GestionStagiaires/images/img-entete.jpg' %}" class="img-fluid w-100" alt="Image Stagiaires">
+        </div>
+    </div>
+    <section class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="row" id="index-p">
+                    <div class="col-sm-12 col-md-10 col-lg-10 offset-md-1 offset-lg-1">
+                        <br>
+                        <h3 class="font-weight-bold">MISSIONS</h3>
+                        <p>
+                            Fruit de l‘intensification des échanges des biens et marchandises entre fournisseurs et acheteurs, OCC est historiquement une réponse au besoin d’organismes neutres et indépendants pour assurer la régularité des transactions commerciales et sauvegarder les intérêts des différents partenaires concernés dans le commerce international.
+                        </p>
+                    </div>
+                </div>
+              
+                <aside id="aside-index">
+                    <div class="row justify-content-center">
+                        <div class="col-sm-12 col-md-12 col-lg-12 text-center">
+                            <h3 class="font-weight-bold">Stages</h3><br/>
+                            <p></p>
+                        </div>
+                        <div class="col-sm-12 col-md-4 col-lg-4">
+                            <div class="card" style="width: 18rem;">
+                                <img src="{% static 'GestionStagiaires/images/stage-etudiant.jpg' %}" class="card-img-top" alt="Image stagiaire Etudiant">
+                                <div class="card-body">
+                                    <h5 class="card-title">Stage Estudiantin</h5>
+                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-4 col-lg-4">
+                            <div class="card" style="width: 18rem;">
+                                <img src="{% static 'GestionStagiaires/images/stage-professionnel.jpg' %}" class="card-img-top" alt="Image Stagiaires professionnel">
+                                <div class="card-body">
+                                    <h5 class="card-title">Stage Professionnel</h5>
+                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                                </div>
+                            </div>
+                        </div>                    
+                    </div>
+                </aside>
+            </div>
+        </div>
+       
+    </section>
+        
+</div>
+   
+{% endblock %}

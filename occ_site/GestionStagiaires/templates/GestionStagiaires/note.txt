@@ -1,0 +1,19 @@
+<td><span><a href="{% url 'GestionStagiaires:deleteStagiaire' Stg.id %}">Del</a></span></td>
+<td><span><a href="{% url 'GestionStagiaires:StagiaireUPDATE' Stg.id %}">Edit</a></span></td>
+
+<div class="form-group">
+                    {{ EncadreurForm.nom_encad|as_crispy_field }}
+                </div>  
+                <div class="form-group">
+                    {{ EncadreurForm.postnom_encad|as_crispy_field }}
+                </div> 
+                <div class="form-group">
+                    {{ EncadreurForm.prenom_encad|as_crispy_field }}
+                </div>
+                <div class="form-group">
+                    {{ EncadreurForm.sexe_encad|as_crispy_field }}
+                </div>
+
+<input type="button" data-sid="{{ st.id }}" class="btn-warning btn-sm" value=Edit/>
+action="{% url 'GestionStagiaires:CreateDirectionAjax' %}"
+action="{% url 'GestionStagiaires:CreateEncadreur' %}" 

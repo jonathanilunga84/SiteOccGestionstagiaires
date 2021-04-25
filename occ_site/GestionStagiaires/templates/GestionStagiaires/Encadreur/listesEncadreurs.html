@@ -1,0 +1,36 @@
+{% extends 'GestionStagiaires/base.html' %}
+
+{% block title %}
+   Listes Stagiaires
+{% endblock %}
+
+{% block contenu %}
+
+<br /> 
+    <h3 class="text-center">LISTE DES ENCADREUR OCC</h3>
+    <table class="table table-borderless">
+       <thead class="border-bottom font-weight-bold">
+            <tr>
+                <th>NUM</th>
+                <td>NOM</td>
+                <td>POSTNOM</td>
+                <td>PRENOM</td>
+                <td>SEXE</td>
+            </tr>
+       </thead> 
+       <tbody>
+            {% for Encad_list in Encadreur_listes %}
+                <tr>
+                    <td>{{ Encad_list.id }}</td>
+                    <td>{{Encad_list.nom_encad }}</td>
+                    <td>{{ Encad_list.postnom_encad }}</td>
+                    <td>{{ Encad_list.prenom_encad }}</td>
+                    <td>{{ Encad_list.sexe_encad }}</td>
+                    <td><a href="{% url 'GestionStagiaires:deleteEncadreur' Encad_list.id %}">Sup</a></td>
+                    <td><a href="{% url 'GestionStagiaires:UpdateEncadreur' Encad_list.id %}">Edit</a></td>                    
+                </tr>
+           {% endfor %}
+       </tbody>
+    </table>
+
+{% endblock %} 

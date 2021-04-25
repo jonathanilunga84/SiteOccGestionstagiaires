@@ -1,0 +1,147 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="stylesheet" href="{% static 'GestionStagiaires/css/bootstrap.min.css' %}" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+		<link rel="stylesheet" href="{% static 'GestionStagiaires/css/main.css' %}">
+		<title>{% block title %}{% endblock %}</title>
+	</head>
+	<style>
+		/*#id_direction{
+			color: red;
+			background-color: blue;
+		}*/
+		#EditLink1{
+			pointer-events: none;
+			color: silver;
+		}
+		.fermeLink{
+			pointer-events: none;
+			color: silver;
+		}
+		.ouverLink{
+			color: yellowgreen;
+		}
+	</style>
+	<style>
+	</style>
+	<body>
+		<header>	
+			<div class="card">				
+				<nav class="navbar navbar-expand-lg navbar-light bg-primar">
+					<div class="container">
+						<!-- a class="navbar-brand" href="#"><img src="{% static 'GestionStagiaires/images/logo1.jpg' %}" alt="OCC"></a-->
+						<a class="navbar-brand" href="#">OCC</a>
+						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+					
+						<div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+							<ul class="navbar-nav">
+								<li class="nav-item active">
+									<a class="nav-link" href="{% url 'GestionStagiaires:index' %}">Accueil <span class="sr-only">(current)</span></a>
+								</li>
+								<!--li class="nav-item">
+								<a class="nav-link" href="#">Stagiaire</a>
+								</li-->
+								<li class="nav-item dropdown">
+									<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										Stagiaires
+									</a> 
+									<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+										<a class="dropdown-item" href="{% url 'GestionStagiaires:annoce' %}">Annoce Stage</a> 
+										<a class="dropdown-item" href="{% url 'GestionStagiaires:createStagiaire' %}">Add Stagiaires</a>
+										<a class="dropdown-item" href="{% url 'GestionStagiaires:listeStagiaires' %}">Listes Stagiaires</a>
+										<hr />
+										<a class="dropdown-item" href="{% url 'GestionStagiaires:CreateEncadreur' %}">Add Encadreur</a>
+										<a class="dropdown-item" href="{% url 'GestionStagiaires:listesEncadreur' %}">Listes Encadreur</a>
+										<!--div class="dropdown-divider"></div>
+										<a class="dropdown-item" href="#">Something else here</a-->
+										<hr />
+										<a class="dropdown-item" href="{% url 'GestionStagiaires:CreateDirection' %}">Add Direction</a>
+										<a class="dropdown-item" href="{% url 'GestionStagiaires:listeDirections' %}">Listes Direction</a>
+									</div>
+								</li>
+								<!--li class="nav-item">
+									<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Apropos</a>
+								</li-->
+								<li class="nav-item">
+								<a class="nav-link" href="#">Apropos</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="{% url 'GestionStagiaires:login' %}">Login</a> 
+									<a class="nav-link" href="{% url 'GestionStagiaires:registerCount' %}">Create Login</a>  
+								</li>
+							</ul>
+						</div>
+					</div>
+				</nav>		
+			</div>
+		</header>
+		<section>
+			<div class="container-fluid">				
+					{% block contenu %}{% endblock %}
+			</div>
+		</section>
+		
+		<footer>
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-4 col-lg-4 bg-primar">
+						<form action="{% url 'GestionStagiaires:index' %}" method="POST" autocomplete="off">
+							{% csrf_token %}
+							{{ form.Email|as_crispy_field }}
+							{{ form.nom|as_crispy_field }}
+							{{ form.msg|as_crispy_field }}
+
+							<button type="submit" class="btn btn-success"><i class="fas fa-database"></i> Envoyer</button>
+						</form>
+					</div>
+					<div class="col-sm-12 col-md-4 offset-md-4 col-lg-4 offset-lg-4">
+						<br />
+						<!--div class="card" style="width: 18rem;">
+							<div class="card-body"-->
+								<!--h5 class="card-title">Laissez-Nous un message</h5-->
+								<!--h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6-->
+								<!--p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p-->
+								<!--a href="#" class="card-link">Card link</a>
+								<a href="#" class="card-link">Another link</a-->
+									<!--form action="{% url 'GestionStagiaires:contactMessage' %}" method="POST">
+										{% csrf_token %}
+										<div class="form-group">						
+										  <input type="email" name="mail" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email address" />
+										</div>
+										<div class="form-group">										  
+										  <input type="text" name="nom" class="form-control" id="exampleInputPassword1" placeholder="Nom complet">
+										</div>
+										<div class="form-group">		
+											<textarea name="msg" id="" class="form-control"></textarea>
+										</div>
+										<button type="submit" class="btn btn-primary">Envoyer</button>
+									</form-->
+							<!--/div>
+						</div-->
+						<hr>
+					</div>					
+				</div>
+				<div class="row">
+					<div class="col-sm-12 col-md-12 col-lg-10 align-items-start">
+						OCC &copy Copyright 2021
+					</div>
+				</div>
+			</div>
+		</footer>
+		<!--script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script-->
+		<script src="{% static 'GestionStagiaires/js/jquery-3.5.1.js' %}"></script>
+		<script src="{% static 'GestionStagiaires/js/bootstrap.min.js' %}"></script>
+		<script>
+			var EditDisable = document.getElementById('EditDisable');
+				EditDisable.disabled =true;
+		</script>
+		{% include "GestionStagiaires/ajax.html" %}
+	</body>
+</html>

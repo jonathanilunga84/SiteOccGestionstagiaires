@@ -1,0 +1,6 @@
+<h3>Vous voulais supprimer cette element ( {{ direction }})</h3>
+<form action="{% url 'GestionStagiaires:deleteDirection' direction.id %}" method="POST">
+    {% csrf_token %}
+    <a href="{% url 'GestionStagiaires:listeDirections' %}">Cancel</a>
+    <input type="submit" value="Confirm" name="Confirm" />
+</form>

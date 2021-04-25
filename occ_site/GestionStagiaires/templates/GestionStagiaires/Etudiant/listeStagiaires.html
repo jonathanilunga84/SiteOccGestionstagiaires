@@ -1,0 +1,32 @@
+{% extends 'GestionStagiaires/base.html' %}
+
+{% block title %}
+   Listes Stagiaires
+{% endblock %}
+
+{% block contenu %}
+<br /> 
+    <h3 class="text-center alert alert-info">LISTE DES STAGIAIRES DE L'OCC</h3>
+    <table class="table table-borderless">
+       <thead class="border-bottom font-weight-bold">
+            <tr>
+                <th>Num</th>
+                <td>Nom</td>
+                <td>Postnom</td>
+                <td>Prenom</td>
+            </tr>
+       </thead> 
+       <tbody>
+            {% for Stg in Stagiaires_liste%}
+                <tr>
+                    <td>{{ Stg.id }}</td>
+                    <td>{{ Stg.nom_stagiaire }}</td>
+                    <td>{{ Stg.postnom_stagiaire }}</td>
+                    <td>{{ Stg.prenom_stagiaire }}</td>
+                    <td><span><a href="{% url 'GestionStagiaires:deleteStagiaire' Stg.id %}">Del</a></span></td>
+                    <td><span><a href="{% url 'GestionStagiaires:StagiaireUPDATE' Stg.id %}">Edit</a></span></td>
+                </tr>
+           {% endfor %}
+       </tbody>
+    </table>
+{% endblock %}  

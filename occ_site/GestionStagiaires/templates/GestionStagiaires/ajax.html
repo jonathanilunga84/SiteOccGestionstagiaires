@@ -1,0 +1,171 @@
+<script>
+    $(document).ready(function(){
+        $("#btnSave1").click(function (e) {
+            e.preventDefault();
+            console.log("Save button Direction Click");
+            let direction = $("#NomDirection").val();
+            let csr = $("input[name=csrfmiddlewaretoken]").val();
+            if(direction == ""){
+                console.log('Please Enter Direction')
+            }else{
+                mydata = { nom_direction: direction, csrfmiddlewaretoken:csr};
+            $.ajax({
+                    url: "{% url 'GestionStagiaires:CreateDirectionAjax' %}",
+                    method: "POST",
+                    data: mydata,
+                    success:function(data){
+                        if(data.status == "Save"){
+                            console.log("enregistrement effectué avec success");
+                            console.log(data.direction_data);
+                            $("#formDirection")[0].reset();
+                            alert("enregistré effectué avec success"); 
+                            $("#staticBackdrop").modal('hide');                       
+                        }
+                        else if(data.status == 0){
+                            console.log("Echec D'enregistré");
+                            alert("Echec D'enregistré");
+                        }
+                    }
+                });
+            }
+        });
+
+        $("#btnSaveEncad").click( function (e) {
+            e.preventDefault();
+            console.log('Save Button Encadreur click');
+            let nom= $("#id_nom_encad").val();
+            let postnom = $("#id_postnom_encad").val();
+            let prenom = $("#id_prenom_encad").val();
+            let sexe = $("#id_sexe_encad").val();
+            let csr = $("input[name=csrfmiddlewaretoken]").val();
+
+            if(nom == ""){
+                console.log("Entre le Nom de l'encadreur");
+            }else if(postnom == ""){
+                console.log("Entre le prenom");
+            }else if(prenom == ""){
+                console.log("Entre le Prenom");
+            }else if(sexe == ""){
+                console.log("Entre le Sexe Encadreur");
+            }
+            else{
+                mydata = {nom_encad:nom, postnom_encad:postnom, prenom_encad:prenom, sexe_encad:sexe, csrfmiddlewaretoken:csr}
+                $.ajax({
+                    url: "{% url 'GestionStagiaires:CreateEncadreurAjax' %}",
+                    method: "POST",
+                    data: mydata,
+                    success:function(data){
+                        if(data.status == "Save"){
+                            console.log("enregistrement effectué avec success");
+                            console.log(data.direction_data);
+                            $("#formDirection")[0].reset();
+                            alert("enregistré effectué avec success"); 
+                            $("#staticBackdrop1").modal('hide');                       
+                        }
+                        else if(data.status == 0){
+                            console.log("Echec D'enregistré");
+                            alert("Echec D'enregistré");
+                        }
+                    }
+                });
+            }
+        });
+
+        let elt = document.getElementById('id_direction');
+            elt.addEventListener('change', function(){
+            let chaineVal = elt.options[elt.selectedIndex].innerHTML;
+            let ab = $("#id_direction").val();
+            if(chaineVal == "Select Direction" || ab == ""){
+                console.log('Valeur Vide');
+                document.getElementById('EditLink').className= 'fermeLink';
+            }else{
+                let csr = $("input[name=csrfmiddlewaretoken]").val();
+                console.log(chaineVal);
+                console.log(ab); 
+                console.log("Un lien UPDATE: "+ "CreateDirectionAjax/"+ab);
+                document.getElementById('EditLink').className= 'EditLinkss';
+                
+                /*let recupLink = document.getElementById('EditLink');
+                recupLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.target.href='/CreateDirectionAjaxs/'+ab;
+                });*/
+
+                //Fessaie(ab); 
+                //let recupLink = 
+                document.getElementById('EditLink').href='/CreateDirectionAjaxs/'+ab;
+                /*let linkMod = recupLink='CreateDirectionAjaxs/'+ab;
+                console.log(recupLink);*/
+                /*let linKM = document.getElementById('EditLink3');
+                console.log(linKM.href);*/
+                /*let id = 5;
+                let Aa = document.createElement('a');
+                let AaText = document.createTextNode("Lienkssss");
+                Aa.setAttribute('href',"CreateDirectionAjaxs/"+ab);*/
+                // Aa.setAttribute('title','Edit Link');
+                // Aa.id ='Edi';
+                //Aa.appendChild(AaText);
+
+                //document.getElementById('EditLink5').appendChild(Aa);
+
+                //document.getElementById('EditLink').innerHTML = ab;
+                //mydata = {nom_encad:nom, postnom_encad:postnom, prenom_encad:prenom, sexe_encad:sexe, csrfmiddlewaretoken:csr}
+               /* mydata = {id_direction:ab}
+                $.ajax({
+                    url: "{% url 'GestionStagiaires:CreateEncadreurAjax' %}",
+                    method: "GET",
+                    data: mydata,
+                    success:function(data){
+                        if(data.status == "recup"){
+                            //console.log("veleur Selec ::"+ $("#id_direction").val());
+                            console.log("Recup ID avec success");
+                            //console.log(data.direction_data);
+                            //$("#formDirection")[0].reset();
+                            //alert("enregistré effectué avec success"); 
+                            //$("#staticBackdrop1").modal('hide');                       
+                        }
+                        else if(data.status == 0){
+                            console.log("Echec Recup ID");
+                            //alert("Echec D'enregistré");
+                        }
+                    }
+                });*/
+            }
+              
+              /*let valeur = elt.val();
+              console.log(valeur);*/             
+            
+        });
+        /*function Fessaie(ab){
+            console.log("Ds F: "+ab);
+        }*/
+
+        document.getElementById('EditLink').addEventListener('click', function (e){
+            e.preventDefault();
+            //console.log('CONTENU: '+e.target.href);
+            let Link = e.target.href;
+            let csr = $("input[name=csrfmiddlewaretoken]").val();
+            mydata = {csrfmiddlewaretoken:csr}
+            $.ajax({
+                    url: Link,
+                    method: "GET",
+                    //data: mydata,
+                    success:function(data){
+                        if(data.status == "recup"){
+                            //console.log("veleur Selec ::"+ $("#id_direction").val());
+                            console.log("Recup ID avec success:: "+ data.direction_data );
+                            //console.log(data.direction_data);
+                            //$("#formDirection")[0].reset();
+                            //alert("enregistré effectué avec success"); 
+
+                            $("#staticBackdrop").modal('show');                       
+                        }
+                        else if(data.status == 0){
+                            console.log("Echec Recup ID");
+                            //alert("Echec D'enregistré");
+                        }
+                    }
+            });
+        })
+    });
+</script>

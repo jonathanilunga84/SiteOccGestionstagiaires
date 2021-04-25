@@ -1,0 +1,30 @@
+{% extends 'GestionStagiaires/base.html' %}
+
+{% block title %}
+   Listes Stagiaires
+{% endblock %}
+
+{% block contenu %}
+
+<br /> 
+    <h3 class="text-center">LISTE DES DIRECTION OCC</h3>
+    <table class="table table-borderless">
+       <thead class="border-bottom font-weight-bold">
+            <tr>
+                <th>NUM</th>
+                <td>NOM DIRECTION</td>
+            </tr>
+       </thead> 
+       <tbody>
+            {% for Direction_list in direction_list %}
+                <tr>
+                    <td>{{ Direction_list.id }}</td>
+                    <td>{{ Direction_list.nom_direction }}</td>
+                    <td><a href="{% url 'GestionStagiaires:deleteDirection' Direction_list.id %}">Sup</a></td>
+                    <td><a href="{% url 'GestionStagiaires:UpdateDirection' Direction_list.id %}">Edit</a></td>                    
+                </tr>
+           {% endfor %}
+       </tbody>
+    </table>
+
+{% endblock %} 

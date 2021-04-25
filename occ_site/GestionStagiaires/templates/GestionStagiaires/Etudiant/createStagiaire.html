@@ -1,0 +1,123 @@
+{% extends 'GestionStagiaires/base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+  Create Stagiaires
+{% endblock %}
+
+{% block contenu %}
+<div class="row">
+    <div class="offset-md-2 col-md-8 bg-dark1">
+        <h3 class="text-center alert alert-info">Enregistrement Stagaire</h3>
+        <form action="" method="POST" autocomplete="off">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-6">
+                    {{stagiaireForm.nom_stagiaire|as_crispy_field}}
+                </div>
+                <div class="col-md-6">
+                    {{stagiaireForm.postnom_stagiaire|as_crispy_field}}
+                </div>
+                <div class="col-md-6">
+                    {{stagiaireForm.prenom_stagiaire|as_crispy_field}}
+                </div>
+                <div class="col-md-6">
+                    {{stagiaireForm.sexe_stagiaire|as_crispy_field}}
+                </div>
+                <div class="col-md-6">
+                    {{stagiaireForm.email_stagiaire|as_crispy_field}}
+                </div>
+                <div class="col-md-6">
+                    {{stagiaireForm.adresse_stagiaire|as_crispy_field}}
+                </div>
+                <div class="col-md-6">
+                    {{stagiaireForm.type_stage|as_crispy_field}}
+                </div>
+                <div class="col-md-2">
+                    {{stagiaireForm.promotion_stagiaire|as_crispy_field}}
+                </div>
+                <div class="col-md-4">
+                    {{stagiaireForm.telephone_stagiaire|as_crispy_field}}
+                </div>
+                <div class="col-md-4">
+                    {{stagiaireForm.direction|as_crispy_field}}
+                </div>
+                <div class="col-md-2 bg-dark1 ">
+                    <a id="EditLink" class="fermeLink" href="#">Edit /</a>
+                    </span id="EditLink1"><a id="EditLink3" href="Lien_a_Modif.html" target="_blank"></a></span>
+                <span id="EditLink5"></span>
+                    <a href="#" type="button" data-toggle="modal" data-target="#staticBackdrop">Add</a>
+                </div>
+                <div class="col-md-4">
+                    {{stagiaireForm.encadreur|as_crispy_field}}
+                </div>
+                <div class="col-md-2">
+                    <a href="#"></a>
+                    <a href="{% url 'GestionStagiaires:CreateEncadreur' %}"></a>
+                    <a href="#" type="button" data-toggle="modal" data-target="#staticBackdrop1">Add</a>
+                </div>
+               
+                    <button type="submit" class="btn btn-success form-control"><i class="fas fa-database"></i> Envoyer</button>
+               
+            </div>
+        </form>  
+        <br />     
+    </div>
+    </div>
+    <!-- Modal pour Direction -->
+    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <!--h5 class="modal-title" id="staticBackdropLabel">Modal title</h5-->
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <h3 class="text-center">Add DIRECTION OCC</h3>
+                    <form id="formDirection" method="POST" autocomplete="off">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            {{ directionForm.as_p }}
+                        </div> 
+                        <button type="submit" id="btnSave1" class="btn btn-success form-control"><i class="fas fa-database"></i> ENREGISTRER</button>                
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal pour Encadreur -->
+    <div class="modal fade" id="staticBackdrop1" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <!--h5 class="modal-title" id="staticBackdropLabel">Modal title</h5-->
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <h3 class="text-center">Add Encadreur OCC</h3>
+                    <form id="" method="POST" autocomplete="off">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            {{ EncadreurForm.nom_encad|as_crispy_field }}
+                        </div>  
+                        <div class="form-group">
+                            {{ EncadreurForm.postnom_encad|as_crispy_field }}
+                        </div> 
+                        <div class="form-group">
+                            {{ EncadreurForm.prenom_encad|as_crispy_field }}
+                        </div>
+                        <div class="form-group">
+                            {{ EncadreurForm.sexe_encad|as_crispy_field }}
+                        </div> 
+                        <button type="submit" id="btnSaveEncad" class="btn btn-success form-control"><i class="fas fa-database"></i> Envoyer</button>                
+                    </form>
+                </div>
+                </div-->
+            </div>
+        </div>
+    </div>
+{% endblock %}  
